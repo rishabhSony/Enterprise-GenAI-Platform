@@ -1,56 +1,33 @@
 # Enterprise GenAI Platform 🏢
 
-A scalable, secure, and production-ready Conversational AI platform designed for enterprise environments. Built with FastAPI, LangChain, and React.
+**Secure, Scalable Conversational AI Infrastructure**
 
-## 🚀 Features
+A production-grade platform designed to deploy Large Language Models (LLMs) within enterprise environments. It addresses critical business requirements including data security, role-based access control (RBAC), and auditability, while delivering a seamless chat experience.
 
--   **RAG Pipeline**: Advanced Retrieval-Augmented Generation with vector database integration (Qdrant/Milvus).
--   **Role-Based Access Control (RBAC)**: Secure API endpoints with JWT authentication.
--   **Admin Dashboard**: React-based interface for managing users, documents, and monitoring usage.
--   **LLM Agnostic**: Support for OpenAI, Azure OpenAI, and Anthropic Claude.
--   **Containerized**: Fully Dockerized for easy deployment via Kubernetes.
+## 🛡️ Enterprise-Grade Security
 
-## 🏗️ Architecture
+-   **RBAC & SSO**: Integrated with Keycloak/Auth0 for granular permission management and Single Sign-On.
+-   **PII Redaction**: Middleware layer automatically detects and masks Personally Identifiable Information before it reaches the LLM.
+-   **Audit Trails**: Comprehensive logging of all prompts and completions for compliance (GDPR/SOC2).
 
-```mermaid
-graph TD
-    User[User] -->|HTTPS| LB[Load Balancer]
-    LB -->|Traffic| API[FastAPI Backend]
-    API -->|Auth| Auth[Keycloak/Auth0]
-    API -->|Query| RAG[RAG Engine]
-    RAG -->|Retrieve| VectorDB[(Vector DB)]
-    RAG -->|Generate| LLM[LLM Service]
-    API -->|Store| DB[(PostgreSQL)]
-```
+## 🏗️ System Architecture
+
+-   **API Gateway**: Kong / NGINX for rate limiting and traffic management.
+-   **Orchestration**: Kubernetes (EKS/GKE) for auto-scaling inference services.
+-   **Vector Search**: Qdrant cluster for high-availability semantic search.
+-   **Database**: PostgreSQL with row-level security.
+
+## 🚀 Key Features
+
+-   **Model Agnostic**: Hot-swappable support for OpenAI, Azure OpenAI, Anthropic, and self-hosted Llama 3.
+-   **Advanced RAG**: Hybrid search (Dense + Sparse) with reranking for superior context retrieval.
+-   **Admin Console**: React-based dashboard for managing knowledge bases, API keys, and usage quotas.
 
 ## 🛠️ Tech Stack
 
 -   **Backend**: Python, FastAPI, LangChain
 -   **Frontend**: React, TypeScript, TailwindCSS
--   **Database**: PostgreSQL (Metadata), Qdrant (Vector)
--   **DevOps**: Docker, Kubernetes, GitHub Actions
-
-## 📦 Getting Started
-
-### Prerequisites
--   Docker & Docker Compose
--   Python 3.10+
--   Node.js 18+
-
-### Installation
-
-1.  **Clone the repository**:
-    ```bash
-    git clone https://github.com/yourusername/Enterprise-GenAI-Platform.git
-    ```
-
-2.  **Start Services**:
-    ```bash
-    docker-compose up -d
-    ```
-
-3.  **Access Dashboard**:
-    Open `http://localhost:3000`
+-   **Infrastructure**: Docker, Kubernetes, Terraform
 
 ## 📄 License
 MIT License
